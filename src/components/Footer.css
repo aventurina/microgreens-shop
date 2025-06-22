@@ -1,0 +1,19 @@
+.footer h5,
+.footer h6 {
+  color: #F0EAD6;
+}
+
+.footer p,
+.footer .text-center {
+  color: #fdf8eb;
+}
+
+.footer a {
+  color: #fdf8eb;
+  text-decoration: none;
+}
+
+.footer .social-icon {
+  color: #F0EAD6;
+  font-size: 1.25rem;
+}

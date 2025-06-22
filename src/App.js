@@ -1,24 +1,52 @@
-import logo from './logo.svg';
+import { useState } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+import Home from './pages/Home';
+import About from './pages/About';
+import Shop from './pages/Shop';
+import Contact from './pages/Contact';
+import Layout from './components/Layout';
+
 import './App.css';
 
 function App() {
+  const [cart, setCart] = useState([]);
+  const [cartModalOpen, setCartModalOpen] = useState(false);
+
+  const toggleCartModal = () => setCartModalOpen((prev) => !prev);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <BrowserRouter>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Layout
+              cart={cart}
+              setCart={setCart}
+              cartModalOpen={cartModalOpen}
+              toggleCartModal={toggleCartModal}
+            />
+          }
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          <Route index element={<Home />} />
+          <Route path="home" element={<Home />} />
+          <Route
+            path="shop"
+            element={
+              <Shop
+                cart={cart}
+                setCart={setCart}
+                cartModalOpen={cartModalOpen}
+                toggleCartModal={toggleCartModal}
+              />
+            }
+          />
+          <Route path="about" element={<About />} />
+          <Route path="contact" element={<Contact />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 

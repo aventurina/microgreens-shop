@@ -1,70 +1,83 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# MeeMee’s Greens - Microgreens Shop
 
-## Available Scripts
+MeeMee’s Greens is a React-based e-commerce web application for selling fresh, locally grown microgreens. The app offers a clean, responsive, and user-friendly interface for customers to browse, add to cart, and place orders for a variety of nutritious microgreens.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Product Browsing:** View a catalog of available microgreens with images, descriptions, and pricing.
+- **Shopping Cart:** Add, update quantities, and remove items from the cart.
+- **Checkout Process:** Secure and simple checkout form capturing customer name, email, and delivery address.
+- **Order Confirmation:** Displays a thank-you message with customer details after placing an order.
+- **Responsive Design:** Fully optimized for desktop, tablet, and mobile devices.
+- **Navigation:** Intuitive navigation bar with links to Shop, About and Contact pages.
+- **Social Media Links:** Connect with MeeMee’s Greens via Instagram and Facebook.
+- **Cart Icon:** Accessible cart icon with item count badge visible on all pages.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+## Technologies Used
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- React.js
+- React Router DOM
+- Reactstrap (Bootstrap components for React)
+- React Icons
+- CSS3 and Bootstrap 5
+- JavaScript (ES6+)
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Getting Started
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Prerequisites
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Node.js (v14+ recommended)
+- npm or yarn
 
-### `npm run eject`
+### Installation
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+1. Clone the repository:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+   ```bash
+   git clone https://github.com/yourusername/meemees-greens.git
+   cd meemees-greens
+   ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+2. Install dependencies:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
 
-## Learn More
+3. Start the development server:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+   ```bash
+   npm start
+   # or
+   yarn start
+   ```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+4. Open your browser and navigate to `http://localhost:3000`
 
-### Code Splitting
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Project Structure
 
-### Analyzing the Bundle Size
+```
+src/
+ ├─ assets/            # Images, logos, icons
+ ├─ components/        # Reusable components (Header, Footer, Modals, etc.)
+ ├─ data/              # Static data such as product lists, pricing info
+ ├─ pages/             # Page components (Home, Shop, About, Contact)
+ ├─ App.js             # Main app component with routes
+ ├─ index.js           # Entry point
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+---
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

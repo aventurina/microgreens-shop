@@ -1,0 +1,159 @@
+.custom-navbar {
+  background-color: #f5f1e1;
+  height: 100px;
+  padding: 0 1.5rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 1040;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+}
+
+.brand-logo img {
+  max-height: 80px;
+  width: auto;
+}
+
+.navbar-section {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+.navbar-section.left {
+  flex: 0 0 200px;
+}
+
+.navbar-section.right {
+  flex-shrink: 0;
+  justify-content: end;
+}
+
+.navbar-section.center {
+  flex: 1 1 auto;
+  justify-content: center;
+}
+
+.main-nav {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-link-item {
+  color: #613a20 !important;
+  font-size: 1.25rem !important;
+  transition: color 0.3s ease;
+  text-decoration: none;
+}
+
+.nav-link-item:hover {
+  color: #A9BA9D !important;
+}
+
+.active-link {
+  font-weight: bold;
+  border-bottom: 2px solid #A9BA9D;
+  color: #3e2914 !important;
+}
+
+.icon-group .nav-icon,
+.icon-nav .nav-icon {
+  color: #613a20;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.nav-icon:hover {
+  color: #A9BA9D;
+}
+
+.custom-toggler {
+  border-color: #613a20;
+  padding: 0.25rem;
+}
+
+/* Sidebar styles */
+.mobile-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 280px;
+  height: 100%;
+  background-color: #f5f1e1;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+  z-index: 1050;
+  padding: 1.5rem 1rem;
+}
+
+.mobile-sidebar.open {
+  transform: translateX(0);
+}
+
+.sidebar-header {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 1rem;
+}
+
+.sidebar-logo {
+  height: 60px;
+}
+
+.close-icon {
+  cursor: pointer;
+  color: #613a20;
+  font-size: 1.5rem;
+}
+
+.sidebar-links .nav-link {
+  font-size: 1.2rem;
+  color: #613a20;
+  padding: 0.75rem 1rem;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.sidebar-links .nav-link:hover {
+  background-color: #e2dfd4;
+  color: #3e2914;
+}
+
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(50, 50, 50, 0.5);
+  z-index: 1040;
+}
+
+/*
+@media (max-width: 768px) {
+  .brand-logo {
+    flex-shrink: 0;
+    padding: 0;
+    margin-right: auto;
+  }
+
+  .custom-navbar {
+    flex-wrap: nowrap;
+    align-items: center !important;
+  }
+}
+*/
+@media (max-width: 455px) {
+  .brand-logo img {
+    max-height: 32px;
+  }
+
+  .custom-toggler {
+    padding: 0.25rem 0.5rem;
+  }
+
+  .navbar-section.left,
+  .navbar-section.right {
+    gap: 0.5rem;
+  }
+}

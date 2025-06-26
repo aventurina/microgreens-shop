@@ -42,7 +42,7 @@ MeeMee’s Greens is a React-based e-commerce web application for selling fresh,
 
    ```bash
    git clone https://github.com/yourusername/meemees-greens.git](https://github.com/aventurina/microgreens-shop.git
-   cd meemees-greens
+   cd microgreens-shop
    ```
 
 2. Install dependencies:

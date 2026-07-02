@@ -1,5 +1,5 @@
 import { Container, Row, Col } from 'reactstrap';
-import microgreens from '../assets/images/microgreens.jpg';
+import microgreens from '../assets/images/microgreens.png';
 import Hero from '../components/Hero';
 
 const Home = () => {

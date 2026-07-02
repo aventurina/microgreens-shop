@@ -74,6 +74,21 @@
   padding: 0.25rem;
 }
 
+.search-input {
+  border: 1px solid #613a20;
+  border-radius: 20px;
+  padding: 0.25rem 0.75rem;
+  outline: none;
+  font-size: 0.95rem;
+  width: 180px;
+  background-color: #fff;
+  color: #3e2914;
+}
+
+.search-input:focus {
+  border-color: #A9BA9D;
+}
+
 /* Sidebar styles */
 .mobile-sidebar {
   position: fixed;

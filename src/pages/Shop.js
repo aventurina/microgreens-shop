@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import {
   Container,
   Row,
@@ -9,6 +10,7 @@ import {
   CardText,
   Button,
   CardImg,
+  Input,
 } from 'reactstrap';
 import { products } from '../data/products';
 import ProductDetailModal from '../components/ProductDetailModal';
@@ -22,6 +24,22 @@ export default function Shop({ cart, setCart, cartModalOpen, toggleCartModal }) 
   const [orderComplete, setOrderComplete] = useState(false);
   const [formData, setFormData] = useState({ name: '', email: '', address: '' });
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchTerm, setSearchTerm] = useState(searchParams.get('search') || '');
+
+  useEffect(() => {
+    setSearchTerm(searchParams.get('search') || '');
+  }, [searchParams]);
+
+  const filteredProducts = products.filter((product) =>
+    product.name.toLowerCase().includes(searchTerm.trim().toLowerCase())
+  );
+
+  const handleSearchChange = (e) => {
+    const value = e.target.value;
+    setSearchTerm(value);
+    setSearchParams(value ? { search: value } : {});
+  };
 
   const addToCart = (product) => {
     const existing = cart.find((item) => item.id === product.id);
@@ -79,28 +97,48 @@ export default function Shop({ cart, setCart, cartModalOpen, toggleCartModal }) 
       </section>
 
       <Container className="my-4">
+        <Row className="justify-content-center mb-4">
+          <Col sm={8} md={6} lg={4}>
+            <Input
+              type="text"
+              placeholder="Search microgreens..."
+              value={searchTerm}
+              onChange={handleSearchChange}
+              aria-label="Search products"
+            />
+          </Col>
+        </Row>
+
         <Row>
-          {products.map((product) => (
-            <Col sm={6} md={4} lg={3} key={product.id} className="mb-3">
-              <Card>
-                <CardImg
-                  top
-                  width="100%"
-                  src={product.image}
-                  alt={product.name}
-                  style={{ cursor: 'pointer' }}
-                  onClick={() => openProductModal(product)}
-                />
-                <CardBody>
-                  <CardTitle tag="h5">{product.name}</CardTitle>
-                  <CardText>${product.price.toFixed(2)}</CardText>
-                  <Button className="btn-microgreen" onClick={() => addToCart(product)}>
-                    Add to Cart
-                  </Button>
-                </CardBody>
-              </Card>
+          {filteredProducts.length > 0 ? (
+            filteredProducts.map((product) => (
+              <Col sm={6} md={4} lg={3} key={product.id} className="mb-3">
+                <Card>
+                  <CardImg
+                    top
+                    width="100%"
+                    src={product.image}
+                    alt={product.name}
+                    style={{ cursor: 'pointer' }}
+                    onClick={() => openProductModal(product)}
+                  />
+                  <CardBody>
+                    <CardTitle tag="h5">{product.name}</CardTitle>
+                    <CardText>${product.price.toFixed(2)}</CardText>
+                    <Button className="btn-microgreen" onClick={() => addToCart(product)}>
+                      Add to Cart
+                    </Button>
+                  </CardBody>
+                </Card>
+              </Col>
+            ))
+          ) : (
+            <Col>
+              <p className="text-center text-muted">
+                No products found matching "{searchTerm}".
+              </p>
             </Col>
-          ))}
+          )}
         </Row>
 
         <ProductDetailModal

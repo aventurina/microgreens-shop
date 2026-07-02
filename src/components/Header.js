@@ -7,7 +7,7 @@ import {
   NavItem,
   NavLink,
 } from 'reactstrap';
-import { NavLink as RRNavLink } from 'react-router-dom';
+import { NavLink as RRNavLink, useNavigate } from 'react-router-dom';
 import { FaShoppingCart, FaSearch, FaTimes } from 'react-icons/fa';
 import logo from '../assets/images/brandlogo.png';
 import './Header.css';
@@ -15,9 +15,21 @@ import './Header.css';
 const Header = ({ cart, toggleCartModal }) => {
   const cartCount = cart.reduce((sum, item) => sum + item.qty, 0);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
+  const navigate = useNavigate();
 
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
   const closeSidebar = () => setIsSidebarOpen(false);
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    const trimmed = searchTerm.trim();
+    navigate(trimmed ? `/shop?search=${encodeURIComponent(trimmed)}` : '/shop');
+    setSearchTerm('');
+    setIsSearchOpen(false);
+    closeSidebar();
+  };
 
   const links = ['Home', 'Shop', 'About', 'Contact'];
 
@@ -55,10 +67,29 @@ const Header = ({ cart, toggleCartModal }) => {
           {/* Desktop icons */}
           <div className="icon-group d-none d-md-flex">
             <Nav navbar className="icon-nav d-flex align-items-center gap-3">
-              <NavItem>
-                <NavLink href="#search" className="nav-icon">
-                  <FaSearch size={20} />
-                </NavLink>
+              <NavItem className="search-nav-item">
+                {isSearchOpen ? (
+                  <form className="search-form d-flex align-items-center" onSubmit={handleSearchSubmit}>
+                    <input
+                      type="text"
+                      className="search-input"
+                      placeholder="Search microgreens..."
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                      onBlur={() => { if (!searchTerm) setIsSearchOpen(false); }}
+                      autoFocus
+                    />
+                  </form>
+                ) : (
+                  <button
+                    type="button"
+                    className="btn nav-icon"
+                    onClick={() => setIsSearchOpen(true)}
+                    aria-label="Open search"
+                  >
+                    <FaSearch size={20} />
+                  </button>
+                )}
               </NavItem>
               <NavItem>
                 <button
@@ -108,10 +139,21 @@ const Header = ({ cart, toggleCartModal }) => {
             </NavItem>
           ))}
 
-          <div className="d-flex justify-content-start gap-3 mt-4 px-3">
-            <FaSearch className="nav-icon" size={20} />
+          <div className="d-flex flex-column gap-3 mt-4 px-3">
+            <form className="d-flex align-items-center gap-2" onSubmit={handleSearchSubmit}>
+              <input
+                type="text"
+                className="search-input flex-grow-1"
+                placeholder="Search microgreens..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+              <button type="submit" className="btn nav-icon" aria-label="Search">
+                <FaSearch size={20} />
+              </button>
+            </form>
             <button
-              className="btn btn-outline-dark position-relative"
+              className="btn btn-outline-dark position-relative align-self-start"
               onClick={toggleCartModal}
               aria-label="Open cart"
             >

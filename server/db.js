@@ -1,0 +1,39 @@
+const path = require('path');
+const Database = require('better-sqlite3');
+
+const db = new Database(path.join(__dirname, 'products.db'));
+
+db.exec(`
+  CREATE TABLE IF NOT EXISTS products (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    description TEXT NOT NULL,
+    price REAL NOT NULL,
+    image TEXT NOT NULL
+  )
+`);
+
+const seedProducts = [
+  { name: 'Sunflower', description: 'Bursting with a mild nutty flavor and crisp texture, our fresh Sunflower Microgreens are packed with vitamins, minerals, and antioxidants. Perfect for adding a crunchy, nutritious boost to salads, sandwiches, smoothies, or as a vibrant garnish. Grown sustainably and harvested at peak freshness, these microgreens deliver both flavor and wellness in every bite.', price: 5, image: '/images/sunflower.jpg' },
+  { name: 'Pea Shoots', description: 'Delicate, tender, and lightly sweet, our Pea Shoots bring a fresh garden flavor to your meals. Rich in vitamins A, C, and folic acid, these vibrant greens are perfect for salads, stir-fries, wraps, or as a crunchy garnish. Sustainably grown and hand-harvested for maximum freshness, Pea Shoots add a nutritious and flavorful touch to any dish.', price: 6, image: '/images/peashoots.jpg' },
+  { name: 'Arugula', description: 'Experience a bold, peppery kick with our vibrant Arugula Microgreens. Packed with antioxidants and a rich source of vitamins A, C, and K, they add a zesty, flavorful punch to salads, sandwiches, and dishes that crave a little spice. Grown sustainably and harvested fresh, these microgreens deliver both nutrition and excitement in every bite.', price: 6, image: '/images/arugula.jpg' },
+  { name: 'Basil', description: 'Enjoy the fresh, aromatic essence of basil in a tender, delicate form. Our Basil Microgreens boast a sweet, slightly spicy flavor that elevates salads, pizzas, pastas, and cocktails with a burst of garden-fresh aroma. Rich in antioxidants and nutrients, these microgreens are sustainably grown and harvested at peak freshness to bring vibrant flavor and wellness to your table.', price: 6, image: '/images/basil.jpg' },
+  { name: 'Beet', description: 'Add a splash of color and a mild, earthy sweetness with our fresh Beet Microgreens. These tender greens are packed with vitamins A, C, and iron, offering a nutritious boost to salads, smoothies, sandwiches, and more. Grown sustainably and harvested at peak freshness, Beet Microgreens bring both beautiful color and wholesome flavor to every meal.', price: 6, image: '/images/beet.jpg' },
+  { name: 'Broccoli', description: 'Crunchy and mildly peppery, our Broccoli Microgreens are a powerhouse of nutrients including vitamins C, K, and sulforaphane—known for its antioxidant properties. Perfect for salads, sandwiches, and smoothies, these fresh microgreens add a healthy, flavorful boost to any meal. Grown sustainably and harvested fresh for maximum nutrition and taste.', price: 6, image: '/images/broccoli.jpg' },
+  { name: 'Kale', description: 'Packed with a powerhouse of nutrients like vitamins A, C, K, and antioxidants, our Kale Microgreens offer a mild, slightly earthy flavor with a tender crunch. Perfect for boosting salads, smoothies, wraps, and more with wholesome goodness. Grown sustainably and harvested fresh, these microgreens bring vibrant nutrition and taste to your meals.', price: 6, image: '/images/kale.jpg' },
+  { name: 'Kohlrabi', description: 'Enjoy the crisp, slightly sweet, and mild cabbage-like flavor of our Kohlrabi Microgreens. These tender greens add a refreshing crunch and subtle zest to salads, sandwiches, and wraps. Rich in vitamins C and B6, they’re sustainably grown and harvested fresh to brighten up your dishes with both flavor and nutrition.', price: 6, image: '/images/kohlrabi.jpg' },
+  { name: 'Radish', description: 'Packed with a bold, peppery flavor and crisp texture, our Radish Microgreens add a spicy kick to salads, sandwiches, and garnishes. Rich in vitamins A, C, and antioxidants, they’re harvested fresh to deliver vibrant flavor and nutrition in every bite. Grown sustainably for your healthy lifestyle.', price: 6, image: '/images/radish.jpg' },
+];
+
+const productCount = db.prepare('SELECT COUNT(*) AS count FROM products').get().count;
+if (productCount === 0) {
+  const insert = db.prepare(
+    'INSERT INTO products (name, description, price, image) VALUES (@name, @description, @price, @image)'
+  );
+  const insertAll = db.transaction((rows) => {
+    for (const row of rows) insert.run(row);
+  });
+  insertAll(seedProducts);
+}
+
+module.exports = db;

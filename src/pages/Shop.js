@@ -12,7 +12,6 @@ import {
   CardImg,
   Input,
 } from 'reactstrap';
-import { products } from '../data/products';
 import ProductDetailModal from '../components/ProductDetailModal';
 import CartModal from '../components/CartModal';
 import CheckoutModal from '../components/CheckoutModal';
@@ -20,6 +19,9 @@ import CheckoutModal from '../components/CheckoutModal';
 import '../App.css';
 
 export default function Shop({ cart, setCart, cartModalOpen, toggleCartModal }) {
+  const [products, setProducts] = useState([]);
+  const [productsLoading, setProductsLoading] = useState(true);
+  const [productsError, setProductsError] = useState(null);
   const [checkoutModalOpen, setCheckoutModalOpen] = useState(false);
   const [orderComplete, setOrderComplete] = useState(false);
   const [formData, setFormData] = useState({ name: '', email: '', address: '' });
@@ -30,6 +32,17 @@ export default function Shop({ cart, setCart, cartModalOpen, toggleCartModal }) 
   useEffect(() => {
     setSearchTerm(searchParams.get('search') || '');
   }, [searchParams]);
+
+  useEffect(() => {
+    fetch('/api/products')
+      .then((res) => {
+        if (!res.ok) throw new Error('Failed to fetch products');
+        return res.json();
+      })
+      .then((data) => setProducts(data))
+      .catch((err) => setProductsError(err.message))
+      .finally(() => setProductsLoading(false));
+  }, []);
 
   const filteredProducts = products.filter((product) =>
     product.name.toLowerCase().includes(searchTerm.trim().toLowerCase())
@@ -110,7 +123,17 @@ export default function Shop({ cart, setCart, cartModalOpen, toggleCartModal }) 
         </Row>
 
         <Row>
-          {filteredProducts.length > 0 ? (
+          {productsLoading ? (
+            <Col>
+              <p className="text-center text-muted">Loading products...</p>
+            </Col>
+          ) : productsError ? (
+            <Col>
+              <p className="text-center text-danger">
+                Could not load products: {productsError}
+              </p>
+            </Col>
+          ) : filteredProducts.length > 0 ? (
             filteredProducts.map((product) => (
               <Col sm={6} md={4} lg={3} key={product.id} className="mb-3">
                 <Card>

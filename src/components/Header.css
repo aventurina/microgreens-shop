@@ -1,9 +1,10 @@
 .custom-navbar {
-  background-color: #f5f1e1;
-  height: 100px;
-  padding: 0 1.5rem;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  position: relative;
+  background-color: var(--color-cream);
+  height: 92px;
+  padding: 0 2rem;
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 0;
   z-index: 1040;
   display: flex;
   align-items: center;
@@ -12,7 +13,7 @@
 }
 
 .brand-logo img {
-  max-height: 80px;
+  max-height: 64px;
   width: auto;
 }
 
@@ -38,55 +39,67 @@
 
 .main-nav {
   display: flex;
-  gap: 1.5rem;
+  gap: 2.25rem;
 }
 
 .nav-link-item {
-  color: #613a20 !important;
-  font-size: 1.25rem !important;
-  transition: color 0.3s ease;
+  color: var(--color-brown) !important;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 1.05rem !important;
+  padding-bottom: 4px;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s var(--ease), border-color 0.2s var(--ease);
   text-decoration: none;
 }
 
 .nav-link-item:hover {
-  color: #A9BA9D !important;
+  color: var(--color-sage-dark) !important;
 }
 
 .active-link {
-  font-weight: bold;
-  border-bottom: 2px solid #A9BA9D;
-  color: #3e2914 !important;
+  font-weight: 600;
+  border-bottom: 2px solid var(--color-sage) !important;
+  color: var(--color-brown-deep) !important;
 }
 
 .icon-group .nav-icon,
 .icon-nav .nav-icon {
-  color: #613a20;
+  color: var(--color-brown);
   cursor: pointer;
-  transition: color 0.3s;
+  transition: color 0.2s var(--ease), transform 0.2s var(--ease);
 }
 
 .nav-icon:hover {
-  color: #A9BA9D;
+  color: var(--color-sage-dark);
+  transform: translateY(-1px);
 }
 
 .custom-toggler {
-  border-color: #613a20;
+  border-color: var(--color-brown);
   padding: 0.25rem;
 }
 
 .search-input {
-  border: 1px solid #613a20;
-  border-radius: 20px;
-  padding: 0.25rem 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  padding: 0.4rem 1rem;
   outline: none;
   font-size: 0.95rem;
-  width: 180px;
-  background-color: #fff;
-  color: #3e2914;
+  width: 200px;
+  background-color: var(--color-white);
+  color: var(--color-brown-deep);
+  transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease);
 }
 
 .search-input:focus {
-  border-color: #A9BA9D;
+  border-color: var(--color-sage);
+  box-shadow: 0 0 0 3px rgba(139, 155, 110, 0.18);
+}
+
+.icon-nav .badge {
+  background-color: var(--color-brown) !important;
+  font-weight: 600;
 }
 
 /* Sidebar styles */
@@ -96,9 +109,9 @@
   left: 0;
   width: 280px;
   height: 100%;
-  background-color: #f5f1e1;
+  background-color: var(--color-cream);
   transform: translateX(-100%);
-  transition: transform 0.3s ease-in-out;
+  transition: transform 0.3s var(--ease);
   z-index: 1050;
   padding: 1.5rem 1rem;
 }
@@ -108,30 +121,32 @@
 }
 
 .sidebar-header {
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid var(--color-border);
   padding-bottom: 1rem;
 }
 
 .sidebar-logo {
-  height: 60px;
+  height: 52px;
 }
 
 .close-icon {
   cursor: pointer;
-  color: #613a20;
+  color: var(--color-brown);
   font-size: 1.5rem;
 }
 
 .sidebar-links .nav-link {
-  font-size: 1.2rem;
-  color: #613a20;
+  font-family: var(--font-body);
+  font-size: 1.15rem;
+  color: var(--color-brown);
   padding: 0.75rem 1rem;
-  transition: background-color 0.2s, color 0.2s;
+  border-radius: var(--radius-sm);
+  transition: background-color 0.2s var(--ease), color 0.2s var(--ease);
 }
 
 .sidebar-links .nav-link:hover {
-  background-color: #e2dfd4;
-  color: #3e2914;
+  background-color: var(--color-cream-deep);
+  color: var(--color-brown-deep);
 }
 
 .sidebar-overlay {
@@ -140,27 +155,13 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(50, 50, 50, 0.5);
+  background: rgba(43, 38, 32, 0.45);
   z-index: 1040;
 }
 
-/*
-@media (max-width: 768px) {
-  .brand-logo {
-    flex-shrink: 0;
-    padding: 0;
-    margin-right: auto;
-  }
-
-  .custom-navbar {
-    flex-wrap: nowrap;
-    align-items: center !important;
-  }
-}
-*/
 @media (max-width: 455px) {
   .brand-logo img {
-    max-height: 32px;
+    max-height: 40px;
   }
 
   .custom-toggler {

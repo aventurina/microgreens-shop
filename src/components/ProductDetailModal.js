@@ -6,6 +6,7 @@ import {
   ModalFooter,
   Button,
 } from 'reactstrap';
+import './Modals.css';
 
 export default function ProductDetailModal({
   isOpen,
@@ -14,7 +15,7 @@ export default function ProductDetailModal({
   addToCart,
 }) {
   return (
-    <Modal isOpen={isOpen} toggle={toggle}>
+    <Modal isOpen={isOpen} toggle={toggle} className="brand-modal" centered>
       <ModalHeader toggle={toggle}>
         {product?.name}
       </ModalHeader>
@@ -24,11 +25,11 @@ export default function ProductDetailModal({
             <img
               src={product.image}
               alt={product.name}
-              style={{ width: '100%', marginBottom: '1rem' }}
+              className="product-modal-image"
             />
-            <p>{product.description}</p>
-            <p>
-              <strong>Price: </strong>${product.price.toFixed(2)}
+            <p className="product-modal-description">{product.description}</p>
+            <p className="product-modal-price">
+              ${product.price.toFixed(2)}
             </p>
           </>
         )}
@@ -45,7 +46,7 @@ export default function ProductDetailModal({
             Add to Cart
           </Button>
         )}
-        <Button color="secondary" onClick={toggle}>
+        <Button className="btn-modal-secondary" onClick={toggle}>
           Close
         </Button>
       </ModalFooter>

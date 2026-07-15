@@ -8,6 +8,7 @@ import {
   Badge,
   Button,
 } from 'reactstrap';
+import './Modals.css';
 
 export default function CartModal({
   isOpen,
@@ -18,52 +19,52 @@ export default function CartModal({
   onProceedToCheckout,
 }) {
   return (
-    <Modal isOpen={isOpen} toggle={toggle}>
+    <Modal isOpen={isOpen} toggle={toggle} className="brand-modal" centered>
       <ModalHeader toggle={toggle}>Your Cart</ModalHeader>
       <ModalBody>
         {cart.length === 0 ? (
-          <p>Your cart is empty.</p>
+          <p className="text-muted mb-0">Your cart is empty.</p>
         ) : (
-          <ListGroup>
+          <ListGroup flush>
             {cart.map((item) => (
               <ListGroupItem
                 key={item.id}
-                className="d-flex justify-content-between align-items-center"
+                className="d-flex justify-content-between align-items-center cart-line-item"
               >
-                <div>
-                  {item.name}{' '}
-                  <Badge className="btn-microgreen" pill>
+                <div className="d-flex align-items-center gap-2">
+                  <span>{item.name}</span>
+                  <Badge className="cart-qty-badge" pill>
                     {item.qty}
                   </Badge>
                 </div>
-                <div>
+                <div className="d-flex align-items-center gap-3">
+                  <span className="cart-line-price">${(item.price * item.qty).toFixed(2)}</span>
                   <Button
                     size="sm"
-                    color="danger"
+                    className="cart-remove-btn"
                     onClick={() => removeFromCart(item)}
-                    className="btn-microgreen me-2"
+                    aria-label={`Remove one ${item.name}`}
                   >
-                    -
+                    &minus;
                   </Button>
-                  ${(item.price * item.qty).toFixed(2)}
                 </div>
               </ListGroupItem>
             ))}
           </ListGroup>
         )}
         {cart.length > 0 && (
-          <h5 className="mt-3">
+          <h5 className="mt-3 cart-total">
             Total: <strong>${totalPrice.toFixed(2)}</strong>
           </h5>
         )}
       </ModalBody>
       <ModalFooter>
         {cart.length > 0 && (
-          <Button className="btn-microgreen" color="success" onClick={onProceedToCheckout}>
+          <Button className="btn-microgreen" onClick={onProceedToCheckout}>
             Proceed to Checkout
           </Button>
         )}
-        <Button color="secondary" onClick={toggle}>
+        <Button className="btn-modal-secondary" onClick={toggle}>
           Close
         </Button>
       </ModalFooter>

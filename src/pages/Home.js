@@ -16,14 +16,14 @@ const Home = () => {
             <img
               src={microgreens}
               alt="Fresh Microgreens"
-              className="img-fluid shadow-sm home-main-img"
+              className="img-fluid home-main-img"
             />
           </Col>
         </Row>
 
         <Row className="justify-content-center">
-          <Col md={mdWidth} lg={lgWidth}>
-            <p className="lead text-muted text-center mb-4 fw-bold">🌱 Welcome to MeeMee's Greens!</p>
+          <Col md={mdWidth} lg={lgWidth} className="home-copy">
+            <p className="home-lede text-center mb-4">🌱 Welcome to MeeMee's Greens!</p>
             <p>
               At MeeMee’s Greens, we believe that good food begins with fresh, honest ingredients. That’s why we grow small-batch microgreens—vibrant, flavorful, and nutrient-dense—right from our home to your table.
             </p>

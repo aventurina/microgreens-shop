@@ -1,0 +1,120 @@
+.brand-modal .modal-content {
+  border: none;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+
+.brand-modal .modal-header {
+  background-color: var(--color-cream);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.brand-modal .modal-header .modal-title,
+.brand-modal .modal-header {
+  font-family: var(--font-display);
+  color: var(--color-brown-deep);
+}
+
+.brand-modal .modal-footer {
+  border-top: 1px solid var(--color-border);
+}
+
+.btn-modal-secondary {
+  background-color: transparent !important;
+  border: 1px solid var(--color-border) !important;
+  color: var(--color-ink-muted) !important;
+  border-radius: 999px !important;
+  padding: 0.55rem 1.5rem !important;
+  transition: background-color 0.2s var(--ease), color 0.2s var(--ease);
+}
+
+.btn-modal-secondary:hover {
+  background-color: var(--color-cream) !important;
+  color: var(--color-brown-deep) !important;
+}
+
+.cart-line-item {
+  border-color: var(--color-border) !important;
+  padding: 0.9rem 0.25rem;
+}
+
+.badge.cart-qty-badge {
+  background-color: var(--color-sage) !important;
+  font-weight: 600;
+}
+
+.cart-line-price {
+  color: var(--color-brown-deep);
+  font-weight: 600;
+  min-width: 56px;
+  text-align: right;
+}
+
+.cart-remove-btn {
+  background-color: var(--color-cream) !important;
+  border: 1px solid var(--color-border) !important;
+  color: var(--color-brown-deep) !important;
+  border-radius: 50% !important;
+  width: 30px;
+  height: 30px;
+  padding: 0 !important;
+  line-height: 1;
+  font-weight: 700;
+}
+
+.cart-remove-btn:hover {
+  background-color: var(--color-sage) !important;
+  color: var(--color-white) !important;
+}
+
+.cart-total {
+  font-family: var(--font-display);
+  color: var(--color-brown-deep);
+}
+
+.order-success {
+  background-color: var(--color-cream);
+  border: 1px solid var(--color-sage-light);
+  color: var(--color-brown-deep);
+  border-radius: var(--radius-sm);
+  padding: 1rem;
+}
+
+.brand-form label {
+  font-weight: 600;
+  color: var(--color-brown-deep);
+  font-size: 0.9rem;
+  margin-bottom: 0.3rem;
+  display: block;
+}
+
+.brand-form .form-control {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+}
+
+.brand-form .form-control:focus {
+  border-color: var(--color-sage);
+  box-shadow: 0 0 0 3px rgba(139, 155, 110, 0.18);
+}
+
+.product-modal-image {
+  width: 100%;
+  border-radius: var(--radius-sm);
+  margin-bottom: 1rem;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+}
+
+.product-modal-description {
+  color: var(--color-ink-muted);
+  line-height: 1.6;
+}
+
+.product-modal-price {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: var(--color-sage-dark);
+}

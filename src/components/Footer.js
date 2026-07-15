@@ -1,5 +1,6 @@
 import './Footer.css';
 import { Container, Row, Col } from 'reactstrap';
+import { Link } from 'react-router-dom';
 import { FaInstagram, FaFacebookF } from 'react-icons/fa';
 
 const Footer = () => {
@@ -9,30 +10,28 @@ const Footer = () => {
     <footer className="footer">
       <Container>
         <Row>
-          <Col md="4" className="mb-3">
-            <h5>MeeMee's Greens</h5>
+          <Col md="4" className="mb-4">
+            <h5 className="footer-brand">MeeMee's Greens</h5>
             <p className="small">
               Grown with love, harvested with care. Bringing microgreens from our garden to your table.
             </p>
           </Col>
 
-          <Col md="4" className="mb-3">
-            <h6>Quick Links</h6>
-            <ul className="list-unstyled small">
+          <Col md="4" className="mb-4">
+            <h6 className="footer-heading">Quick Links</h6>
+            <ul className="list-unstyled small footer-links">
               {quickLinks.map((link) => (
                 <li key={link}>
-                  <a href={`#${link.toLowerCase()}`}>
-                    {link}
-                  </a>
+                  <Link to={`/${link.toLowerCase()}`}>{link}</Link>
                 </li>
               ))}
             </ul>
           </Col>
 
-          <Col md="4" className="mb-3">
-            <h6>Contact</h6>
-            <p className="small mb-1">info@meemeesgreens.com</p>
-            <div className="d-flex align-items-center gap-3">
+          <Col md="4" className="mb-4">
+            <h6 className="footer-heading">Contact</h6>
+            <p className="small mb-2">info@meemeesgreens.com</p>
+            <div className="d-flex align-items-center gap-2">
               <a
                 href="https://instagram.com/meemeesgreens"
                 target="_blank"
@@ -55,8 +54,8 @@ const Footer = () => {
           </Col>
         </Row>
 
-        <hr />
-        <div className="text-center small">
+        <hr className="footer-hr" />
+        <div className="text-center small footer-copyright">
           &copy; {new Date().getFullYear()} MeeMee's Greens. All rights reserved.
         </div>
       </Container>

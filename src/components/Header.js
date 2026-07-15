@@ -7,7 +7,7 @@ import {
   NavItem,
   NavLink,
 } from 'reactstrap';
-import { NavLink as RRNavLink, useNavigate } from 'react-router-dom';
+import { NavLink as RRNavLink, Link, useNavigate } from 'react-router-dom';
 import { FaShoppingCart, FaSearch, FaTimes } from 'react-icons/fa';
 import logo from '../assets/images/brandlogo.png';
 import './Header.css';
@@ -38,7 +38,7 @@ const Header = ({ cart, toggleCartModal }) => {
       <Navbar expand="md" className="custom-navbar px-3 d-flex align-items-center">
         {/* Left section: Logo */}
         <div className="navbar-section left">
-          <NavbarBrand href="/" className="brand-logo d-flex align-items-center">
+          <NavbarBrand tag={Link} to="/" className="brand-logo d-flex align-items-center">
             <img src={logo} alt="MeeMee's Greens Logo" />
           </NavbarBrand>
         </div>
@@ -50,10 +50,9 @@ const Header = ({ cart, toggleCartModal }) => {
               <NavItem key={link}>
                 <NavLink
                   tag={RRNavLink}
-                  to={`/${link.toLowerCase()}`}
-                  exact
-                  activeClassName="active-link"
-                  className="nav-link-item"
+                  to={link === 'Home' ? '/' : `/${link.toLowerCase()}`}
+                  end
+                  className={({ isActive }) => `nav-link-item${isActive ? ' active-link' : ''}`}
                 >
                   {link}
                 </NavLink>
@@ -129,9 +128,9 @@ const Header = ({ cart, toggleCartModal }) => {
             <NavItem key={link}>
               <NavLink
                 tag={RRNavLink}
-                to={`/${link.toLowerCase()}`}
-                exact
-                activeClassName="active-link"
+                to={link === 'Home' ? '/' : `/${link.toLowerCase()}`}
+                end
+                className={({ isActive }) => (isActive ? 'active-link' : '')}
                 onClick={closeSidebar}
               >
                 {link}

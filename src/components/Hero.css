@@ -1,9 +1,30 @@
 .hero-section {
-  background-color: #8B9B6E; /* earthy green */
+  position: relative;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(255, 255, 255, 0.12), transparent 45%),
+    radial-gradient(circle at 85% 80%, rgba(0, 0, 0, 0.08), transparent 50%),
+    linear-gradient(135deg, var(--color-sage) 0%, var(--color-sage-dark) 100%);
   text-align: center;
+  overflow: hidden;
 }
 
-.hero-text {
-  color: #F0EAD6; /* soft cream */
+.hero-inner {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
 }
 
+.hero-title {
+  color: var(--color-cream);
+  margin-bottom: 0.75rem;
+}
+
+.hero-subtitle {
+  color: var(--color-cream-deep);
+  opacity: 0.95;
+  margin-bottom: 2rem;
+}
+
+.hero-cta {
+  font-size: 1.05rem;
+}

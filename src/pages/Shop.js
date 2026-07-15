@@ -106,14 +106,16 @@ export default function Shop({ cart, setCart, cartModalOpen, toggleCartModal }) 
   return (
     <>
       <section className="page-subheader-section py-4 w-100">
-        <h2 className="page-subheader-text display-8 fw-bold">Shop Organic Microgreens</h2>
+        <h2 className="page-subheader-text display-5 fw-bold">Shop Organic Microgreens</h2>
+        <p className="page-subheader-sub mb-0">Small-batch trays, harvested fresh to order.</p>
       </section>
 
-      <Container className="my-4">
+      <Container className="my-5">
         <Row className="justify-content-center mb-4">
           <Col sm={8} md={6} lg={4}>
             <Input
               type="text"
+              className="shop-search-input"
               placeholder="Search microgreens..."
               value={searchTerm}
               onChange={handleSearchChange}
@@ -122,7 +124,7 @@ export default function Shop({ cart, setCart, cartModalOpen, toggleCartModal }) 
           </Col>
         </Row>
 
-        <Row>
+        <Row className="g-4">
           {productsLoading ? (
             <Col>
               <p className="text-center text-muted">Loading products...</p>
@@ -135,8 +137,8 @@ export default function Shop({ cart, setCart, cartModalOpen, toggleCartModal }) 
             </Col>
           ) : filteredProducts.length > 0 ? (
             filteredProducts.map((product) => (
-              <Col sm={6} md={4} lg={3} key={product.id} className="mb-3">
-                <Card>
+              <Col sm={6} md={4} lg={3} key={product.id}>
+                <Card className="product-card">
                   <CardImg
                     top
                     width="100%"
@@ -148,7 +150,7 @@ export default function Shop({ cart, setCart, cartModalOpen, toggleCartModal }) 
                   <CardBody>
                     <CardTitle tag="h5">{product.name}</CardTitle>
                     <CardText>${product.price.toFixed(2)}</CardText>
-                    <Button className="btn-microgreen" onClick={() => addToCart(product)}>
+                    <Button className="btn-microgreen w-100" onClick={() => addToCart(product)}>
                       Add to Cart
                     </Button>
                   </CardBody>

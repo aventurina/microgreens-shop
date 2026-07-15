@@ -8,6 +8,7 @@ import {
   Button,
   Alert,
 } from 'reactstrap';
+import './Contact.css';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -32,12 +33,12 @@ export default function Contact() {
   return (
     <>
       <section className="page-subheader-section py-4 w-100">
-        <h2 className="page-subheader-text display-8 fw-bold">Contact Us</h2>
+        <h2 className="page-subheader-text display-5 fw-bold">Contact Us</h2>
+        <p className="page-subheader-sub mb-0">We'd love to hear from you.</p>
       </section>
 
-      <Container className="my-5" style={{ maxWidth: '600px' }}>
-        <h1 className="mb-4">Contact Us</h1>
-        <p>If you have any questions or feedback, feel free to reach out. We’d love to hear from you!</p>
+      <Container className="my-5 contact-form-wrap">
+        <p className="contact-intro">If you have any questions or feedback, feel free to reach out.</p>
 
         {submitted && (
           <Alert color="success" toggle={() => setSubmitted(false)}>
@@ -45,7 +46,7 @@ export default function Contact() {
           </Alert>
         )}
 
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit} className="contact-form">
           <FormGroup>
             <Label for="name">Name</Label>
             <Input
@@ -99,7 +100,7 @@ export default function Contact() {
             />
           </FormGroup>
 
-          <Button className="btn-microgreen mt-3" type="submit">
+          <Button className="btn-microgreen mt-2" type="submit">
             Send Message
           </Button>
         </Form>

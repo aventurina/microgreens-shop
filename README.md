@@ -3,6 +3,10 @@
 
 MeeMee’s Greens is a React-based e-commerce web application for selling fresh, locally grown microgreens. The app offers a clean, responsive, and user-friendly interface for customers to browse, add to cart, and place orders for a variety of nutritious microgreens. Product data is served from a Node/Express API backed by a SQLite database.
 
+![MeeMee's Greens screenshot](docs/screenshot-microgreens-shop.png)
+
+**Live site:** [microgreens-shop-eta.vercel.app](https://microgreens-shop-eta.vercel.app/)
+
 ---
 
 ## Features

@@ -20,9 +20,11 @@ MeeMee’s Greens is a React-based e-commerce web application for selling fresh,
 - **Social Media Links:** Connect with MeeMee’s Greens via Instagram and Facebook.
 - **Cart Icon:** Accessible cart icon with item count badge visible on all pages.
 
+This is a demo storefront, so checkout captures order details but doesn't process real payments.
+
 ---
 
-## Technologies Used
+## Technologies used
 
 **Frontend**
 - React.js
@@ -36,9 +38,11 @@ MeeMee’s Greens is a React-based e-commerce web application for selling fresh,
 - Node.js and Express
 - SQLite (via `better-sqlite3`)
 
+**Why these choices:** SQLite kept local development simple, no separate database server to install, the whole product catalog lives in one file. Reactstrap gave the storefront a clean, responsive look without hand-building every component from scratch.
+
 ---
 
-## Getting Started
+## Getting started
 
 ### Prerequisites
 
@@ -83,16 +87,18 @@ MeeMee’s Greens is a React-based e-commerce web application for selling fresh,
 
 ## Backend / API
 
-The Express server in `server/` exposes the product catalog from a local SQLite database (`server/products.db`, auto-created and seeded on first run):
+Locally, this runs a full Express and SQLite backend. The Express server in `server/` exposes the product catalog from a local SQLite database (`server/products.db`, auto-created and seeded on first run):
 
-- `GET /api/products` — list all products
-- `GET /api/products/:id` — get a single product by id
+- `GET /api/products` (list all products)
+- `GET /api/products/:id` (get a single product by id)
 
 The React dev server proxies `/api` requests to the backend (see `"proxy"` in `package.json`), so no CORS configuration is needed during development.
 
+The live deployment on Vercel works differently. Vercel doesn't run a persistent server, so there's no SQLite database in production. Instead, two serverless functions (small pieces of backend code that run on demand instead of a server that's always on) serve the same product data directly from a static file, no database involved. Locally you're querying real SQL against a real database, in production you're getting the same data served a simpler way.
+
 ---
 
-## Project Structure
+## Project structure
 
 ```
 server/

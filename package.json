@@ -1,6 +1,8 @@
 {
   "name": "microgreens-shop",
   "version": "0.1.0",
+  "description": "A React-based e-commerce storefront for selling fresh, locally grown microgreens.",
+  "author": "Aimee Venturina",
   "private": true,
   "proxy": "http://localhost:4001",
   "dependencies": {
